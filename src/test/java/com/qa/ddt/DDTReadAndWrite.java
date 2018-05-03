@@ -1,9 +1,10 @@
-package com.qa.tdd;
+package com.qa.ddt;
 
 import static org.junit.Assert.assertEquals;
 import com.qa.constants.Constants;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,6 @@ import com.qa.utils.ExcelUtils;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import org.apache.poi.ss.usermodel.DataFormatter;
 
 public class DDTReadAndWrite {
 
@@ -23,12 +23,13 @@ public class DDTReadAndWrite {
 	static final String REPORT_FILE_NAME = "ExcelUtilsDemoTestReport.html";
 	static final String FILE_TEST_DATA = "LoginData.xlsx";
 
-	@Before
+	@BeforeClass
 	public void setUp() throws Exception {
 		//How to load the file into memory
 		ExcelUtils.setExcelFile(Constants.PATH_TEST_DATA + FILE_TEST_DATA, 0);
 		System.setProperty(Constants.WEB_DRIVER, Constants.PATH_DRIVER);
 		driver = new ChromeDriver();
+		report = new ExtentReports(Constants.PATH_OUTPUT_DATA + REPORT_FILE_NAME, true);
 
 	}
 
@@ -39,9 +40,6 @@ public class DDTReadAndWrite {
 
 	@Test
 	public void test() throws InterruptedException {
-
-		report = new ExtentReports(Constants.PATH_OUTPUT_DATA + REPORT_FILE_NAME, true);
-
 
 		for (int i = 1; i < ExcelUtils.ExcelWSheet.getPhysicalNumberOfRows(); i++) {
 

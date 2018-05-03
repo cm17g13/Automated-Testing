@@ -59,14 +59,11 @@ public class ExcelUtils {
 			Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
 			String CellData = Cell.getStringCellValue();
 			return CellData;*/
-			
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			return "";
-
 		}
-
 	}
 
 	// This method is to write in the Excel cell, Row num and Col num are
