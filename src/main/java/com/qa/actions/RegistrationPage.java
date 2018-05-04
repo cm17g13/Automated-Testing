@@ -31,8 +31,8 @@ public class RegistrationPage extends PageParent {
 	@FindBy(id = "dropdown_7")
 	private WebElement countries;
 	
-	//@FindBy(partialLinkText = "date_8[date]")
-	//private List<WebElement> dates;
+	@FindBy(xpath = "//*[contains(@id, 'date_8')]")
+	private List<WebElement> dates;
 	
 	@FindBy(id = "phone_9")
 	private WebElement phoneNumber;
@@ -107,8 +107,8 @@ public class RegistrationPage extends PageParent {
 	public void setCountry(String name) {
 		Select selectBox = new Select(countries);
 		if(name == null) {
-			List<WebElement> options = selectBox.getOptions();
-			selectBox.selectByIndex((rand.nextInt(options.size())));
+			int optionSize = selectBox.getOptions().size();
+			selectBox.selectByIndex((rand.nextInt(optionSize)));
 			
 			/*Actions actions = new Actions(driver);
 			actions.click(countries);
@@ -126,7 +126,6 @@ public class RegistrationPage extends PageParent {
 	}
 	
 	public void setDate(List<Integer> dateList) {
-		List<WebElement> dates = driver.findElements(By.xpath("//*[contains(@id, 'date_8')]"));
 		for(int i = 0; i < dates.size(); i++) {
 			if(dateList.size() <= i) {
 				int value = 0;
@@ -214,13 +213,13 @@ public class RegistrationPage extends PageParent {
 	public void lazyMethod() {
 		List<Integer> date = new ArrayList<Integer>();  
 		List<Boolean> hobbies = new ArrayList<Boolean>();  
-		hobbies.add(true);
+		/*hobbies.add(true);
 		hobbies.add(false);
 		hobbies.add(true);
 		
 		date.add(5);
 		date.add(8);
-		date.add(1987);
+		date.add(1987);*/
 		
 		setFirstName(null);
 		setLastName(null);
